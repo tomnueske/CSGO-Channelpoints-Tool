@@ -1,0 +1,27 @@
+{
+    "name": "csgo-channelpoints-tool",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "set NODE_ENV=development&& node index.js",
+        "build": "set NODE_ENV=production&& node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tomnueske/CSGO-Channelpoints-Tool.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/tomnueske/CSGO-Channelpoints-Tool/issues"
+    },
+    "homepage": "https://github.com/tomnueske/CSGO-Channelpoints-Tool#readme",
+    "dependencies": {
+        "dotenv": "^16.0.0",
+        "telnet-client": "^2.0.2",
+        "tmi.js": "^1.8.5"
+    }
+}
