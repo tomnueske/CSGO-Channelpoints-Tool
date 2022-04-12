@@ -14,7 +14,6 @@ async function listen(con) {
   client.connect().catch(console.error);
   client.on("message", (channel, tags, message, self) => {
     if (self) return;
-    //console.log(JSON.stringify(tags, null, 2));
     if (tags["custom-reward-id"] === config.troll_reward_id) {
       if (message.toLowerCase() === "jump") {
         sendMessage(con, "+jump");
@@ -61,17 +60,22 @@ async function listen(con) {
       }
     }
     if (tags["custom-reward-id"] === config.crosshair_reward_id) {
-      sendMessage(con, "apply_crosshair_code " + message);
-      sendMessage(
-        con,
-        "echo applied crosshair from: " +
-          tags["username"] +
-          " | code: " +
-          message
-      );
-      console.log(
-        "applied crosshair from: " + tags["username"] + " | code: " + message
-      );
+      if (message.match(/CSGO-\w{5}-\w{5}-\w{5}-\w{5}-\w{5}/)){
+        sendMessage(con, "apply_crosshair_code " + message.match(/CSGO-\w{5}-\w{5}-\w{5}-\w{5}-\w{5}/)[0]);
+        sendMessage(
+          con,
+          "echo applied crosshair from: " +
+            tags["username"] +
+            " | code: " +
+            message.match(/CSGO-\w{5}-\w{5}-\w{5}-\w{5}-\w{5}/)[0]
+        );
+        console.log(
+          "applied crosshair from: " + tags["username"] + " | code: " + message.match(/CSGO-\w{5}-\w{5}-\w{5}-\w{5}-\w{5}/)[0]
+        );
+      }
+      
+      
+     
 
       setTimeout(
         () => sendMessage(con, "apply_crosshair_code " + config.crosshair),
