@@ -73,6 +73,17 @@ async function listen(con) {
           "applied crosshair from: " + tags["username"] + " | code: " + message.match(/CSGO-\w{5}-\w{5}-\w{5}-\w{5}-\w{5}/)[0]
         );
       }
+      else{
+        sendMessage(con,  getCrosshair(message));
+        sendMessage(
+          con,
+          "echo applied crosshair from: " +
+            tags["username"] +
+            " | crosshair commands were used" );
+        console.log(
+          "applied crosshair from: " + tags["username"] + " |  crosshair commands were used" 
+        );
+      }
       
       
      
@@ -121,6 +132,16 @@ async function sendMessage(con, message) {
   try {
     await con.exec(message);
   } catch (e) {}
+}
+
+function getCrosshair(message) {
+  let lines = [];
+  message.split(/;/).forEach((line) => {
+    if (line.match("cl_crosshair") && line != undefined) {
+      lines.push(line);
+    } 
+  });
+  return lines.join(";");
 }
 
 csgoconsole();
